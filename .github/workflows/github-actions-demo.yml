@@ -1,0 +1,22 @@
+name: Run ReadyAPI Tests
+
+on: [push]
+
+jobs:
+  run-tests:
+    runs-on: windows-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v4
+
+    - name: Set up ReadyAPI environment
+      run: |
+        echo "READYAPI_HOME=C:\Users\username\AppData\Local\SmartBear\ReadyAPI-3.41.0" >> $GITHUB_ENV
+        echo "PROJECT_DIR=${{ github.workspace }}" >> $GITHUB_ENV
+      shell: cmd
+
+    - name: Run ReadyAPI Tests
+      run: |
+        %READYAPI_HOME%\bin\testrunner.bat "-sTest Suite 1" -r -a -j "-f%PROJECT_DIR%\ReadyAPI Reports" "-RJUnit-Style HTML Report" -FXML "-ETest" %PROJECT_DIR%\DSP
+      shell: cmd
