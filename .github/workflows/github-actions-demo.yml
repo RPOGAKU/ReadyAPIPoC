@@ -18,5 +18,5 @@ jobs:
 
     - name: Run ReadyAPI Tests
       run: |
-        %READYAPI_HOME%\testrunner.bat "-sDemoAppProject" -r -a -j "-f%PROJECT_DIR%\ReadyAPI Reports" "-RJUnit-Style HTML Report" -FXML %PROJECT_DIR%\DemoAppProject
+        cmd /c .\testrunner.bat "-sDemoAppProject" -r -a -j "-f%PROJECT_DIR%\ReadyAPI Reports" "-RJUnit-Style HTML Report" -FXML %PROJECT_DIR%\DemoAppProject
       shell: cmd
