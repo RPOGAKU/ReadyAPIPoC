@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="5a367f2c-632a-4cb8-8ebf-2c2ea67cefb9" created="3.58.0" activeEnvironment="Default environment" encryptionMode="Not encrypted" name="DemoAppProject" projectVersion="" updated="3.58.0 2025-01-10T10:05:45Z" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings/>
+  <con:interface xsi:type="con:RestService" id="8373443e-492b-4834-90b8-ec23c28d38da" name="DemoApp" type="rest_ex" wadlVersion="https://swagger.io/openapiv3/specification" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:settings id="222392bc-9b13-4d36-b31d-c95b5412989d"/>
+    <con:definitionCache type="TEXT" rootPart="DemoApp.json">
+      <con:part>
+        <con:url>DemoApp.json</con:url>
+        <con:content>{"openapi":"3.0.1","info":{"title":"DemoApp","description":"","version":"1.0.0"},"servers":[{"url":"/"}],"paths":{"":{"description":"","get":{"description":"","responses":{"default":{"description":"Default response"}}},"post":{"description":"","requestBody":{"content":{"application/json":{}}},"responses":{"default":{"description":"Default response"}}}}}}</con:content>
+        <con:type>https://swagger.io/openapiv3/specification</con:type>
+      </con:part>
+    </con:definitionCache>
+    <con:endpoints>
+      <con:endpoint>http://localhost:8081/api/order</con:endpoint>
+    </con:endpoints>
+    <con:resource name="" path="" id="9bc756ec-e3ec-4c69-a1a0-ba4856ea58a2">
+      <con:settings/>
+      <con:parameters/>
+      <con:method name="POST" id="ba64454e-a647-4fb4-b0fd-3dfce9cda350" method="POST">
+        <con:settings/>
+        <con:parameters/>
+        <con:request name="Request 1" id="b58f3c8f-a1c0-4344-b334-19e08114e0a1" mediaType="application/json" postQueryString="false">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>http://localhost:8081/api/order</con:endpoint>
+          <con:request>{
+  "order":[
+    {
+      "orderId":"1-13EU3D",
+      "created":"2007-01-29 19:24:07.000",
+      "createdBy":"1-31-200",
+      "lastUpd":"2015-03-16 18:58:26.000",
+      "lastUpdBy":"0-1",
+      "modificationNum":6,
+      "activeFlg":"Y"
+    
+    }
+  ]
+}</con:request>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+      <con:method name="GET" id="a93b0091-d7b2-4d27-ab47-8f2560d4ad3e" method="GET">
+        <con:settings/>
+        <con:parameters>
+          <con:parameter required="true">
+            <con:name>orderId</con:name>
+            <con:value/>
+            <con:style>QUERY</con:style>
+            <con:default/>
+          </con:parameter>
+        </con:parameters>
+        <con:request name="Request 1" id="bd62bfc1-893c-4c6d-95ad-d147a79ae469" mediaType="application/json">
+          <con:settings/>
+          <con:endpoint>http://localhost:8081/api/order</con:endpoint>
+          <con:request/>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters/>
+          <con:parameterOrder>
+            <con:entry>orderId</con:entry>
+          </con:parameterOrder>
+        </con:request>
+      </con:method>
+    </con:resource>
+  </con:interface>
+  <con:testSuite id="ac726459-0c9d-4196-8e36-f24ecd20b7fd" name="DemoAppProject">
+    <con:settings id="ccab29d0-6615-4ef0-ab3c-ae6b3a696546"/>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:testCase id="a10d50b1-4e68-4c1c-b00c-98ba9a45e6cb" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="PositiveScenario" searchProperties="true" timeout="0">
+      <con:settings/>
+      <con:testStep type="datasource" name="DataSource" id="e09e52a5-736c-4389-87b8-a9033896dc8f">
+        <con:settings/>
+        <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:dataSource type="Grid">
+            <con:configuration>
+              <check><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry></xml-fragment>]]></check>
+              <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Positive - GET</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">1-13EU3D</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+              <row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">Positive - POST</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config">{   "order":[     {       "orderId":"1-13EU3D",       "created":"2007-01-29 19:24:07.000",       "createdBy":"1-31-200",       "lastUpd":"2015-03-16 18:58:26.000",       "lastUpdBy":"0-1",       "modificationNum":6,       "activeFlg":"Y"          }   ] }</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row>
+              <recognizeAsPlainText>true</recognizeAsPlainText>
+            </con:configuration>
+          </con:dataSource>
+          <con:shared>true</con:shared>
+          <con:restartShared>true</con:restartShared>
+          <con:property>Scenario</con:property>
+          <con:property>orderId</con:property>
+          <con:property>payload</con:property>
+          <con:restartOnRun>true</con:restartOnRun>
+          <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="GroovyScript" id="c31eb370-830e-4e4b-8a60-99cd1340060b">
+        <con:settings/>
+        <con:config>
+          <script>// Retrieve data from the Data Source
+def dataSourceStep = testRunner.testCase.getTestStepByName("DataSource")
+def orderId = dataSourceStep.getPropertyValue("orderId")
+def payload = dataSourceStep.getPropertyValue("payload")
+
+// Determine which request to execute
+if (orderId) {
+    // Execute GET request
+    def getStep = testRunner.testCase.getTestStepByName("GetOrder")
+    getStep.setPropertyValue("orderId", orderId)
+    testRunner.runTestStepByName("GetOrder")
+} else if (payload) {
+    // Execute POST request
+    def postStep = testRunner.testCase.getTestStepByName("PostOrder")
+    postStep.setPropertyValue("payload", payload)
+    testRunner.runTestStepByName("PostOrder")
+}
+</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="PostOrder" id="bf625575-53a8-4458-89ca-fb88e20b996c">
+        <con:settings/>
+        <con:config service="DemoApp" resourcePath="" methodName="POST" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="PostOrder" id="b58f3c8f-a1c0-4344-b334-19e08114e0a1" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8081/api/order</con:endpoint>
+            <con:request>{
+  "order":[
+    {
+      "orderId":"1-13EU3D",
+      "created":"2007-01-29 19:24:07.000",
+      "createdBy":"1-31-200",
+      "lastUpd":"2015-03-16 18:58:26.000",
+      "lastUpdBy":"0-1",
+      "modificationNum":6,
+      "activeFlg":"Y"
+    
+    }
+  ]
+}</con:request>
+            <con:originalUri>http://localhost/api/order</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="2941d59c-7e1e-4fc6-9187-1eec8e69817e" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="Response SLA Assertion" id="3335bb84-965c-4bfb-88c9-735e53c9431f" name="Response SLA">
+              <con:configuration>
+                <SLA>20000</SLA>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters/>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="GetOrder" id="32edc235-0861-4c2a-b508-971b05e8b5bd">
+        <con:settings/>
+        <con:config service="DemoApp" resourcePath="" methodName="GET" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GetOrder" id="bd62bfc1-893c-4c6d-95ad-d147a79ae469" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8081/api/order</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/api/order</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="4eb26d37-6465-42a2-bf5d-96bf0083cdf4" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="Response SLA Assertion" id="6b4fe718-82f2-4178-b3e6-85d7e925f9b2" name="Response SLA">
+              <con:configuration>
+                <SLA>20000</SLA>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters>
+              <con:entry key="orderId" value="1-13EU3D"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>orderId</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="datasourceloop" name="DataSourceLoop" id="8960acc1-0d4b-4239-bf2c-c5316de0566a">
+        <con:settings/>
+        <con:config>
+          <dataSourceStep>DataSource</dataSourceStep>
+          <targetStep>GroovyScript</targetStep>
+          <discardResults>true</discardResults>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+      <con:reportParameters/>
+    </con:testCase>
+    <con:properties/>
+    <con:reportParameters/>
+  </con:testSuite>
+  <con:requirements/>
+  <con:properties/>
+  <con:wssContainer/>
+  <con:databaseConnectionContainer/>
+  <con:jmsConnectionContainer/>
+  <con:oAuth2ProfileContainer/>
+  <con:oAuth1ProfileContainer/>
+  <con:reporting>
+    <con:xmlTemplates/>
+    <con:parameters/>
+  </con:reporting>
+  <con:eventHandlers type="RequestFilter.filterRequest" name="RequestFilter.filterRequest">
+    <con:script>// Sample event script to add custom HTTP header to all outgoing REST, SOAP and HTTP(S) calls
+// This code is often used for adding custom authentication to ReadyAPI functional tests
+
+// If hardcoding the token, uncomment and change line 5
+// token = '4567'
+
+// If your token is parameterized in Project level custom property, uncomment line 8
+// token = request.parent.testCase.testSuite.project.getProperty('auth_token').getValue()
+
+// To modify all outgoing calls, remove comments from lines 11 to 16
+// headers = request.requestHeaders
+// if (headers.containsKey('auth_token2') == false) {
+//   headers.put('auth_token2', token)
+//   request.requestHeaders = headers
+// }</con:script>
+  </con:eventHandlers>
+  <con:eventHandlers type="TestRunListener.afterStep" name="TestRunListener.afterStep">
+    <con:script>// Save all test step results into files
+// Change the directory path in line 5 to a location where you want to store details
+// then uncomment lines 5 to 10
+
+// filePath = 'C:\\tempOutputDirectory\\'
+// fos = new java.io.FileOutputStream(filePath + testStepResult.testStep.label + '.txt', true)
+// pw = new java.io.PrintWriter(fos)
+// testStepResult.writeTo(pw)
+// pw.close()
+// fos.close()</con:script>
+  </con:eventHandlers>
+  <con:authRepository/>
+  <con:tags/>
+</con:soapui-project>
