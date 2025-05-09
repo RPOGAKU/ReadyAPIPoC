@@ -25,13 +25,15 @@ jobs:
           PROJECT_FILE: DemoAppProject.xml
           TEST_SUITE: DemoAppProject
         run: |
+          mkdir -p test-results
           docker run --rm \
             -v "${{ github.workspace }}:/readyapi" \
+            -v "${{ github.workspace }}/test-results:/test-results" \
             smartbear/ready-api-soapui-testrunner:latest \
             /readyapi/${PROJECT_FILE} \
             -s "${TEST_SUITE}" \
             -j \
-            -f /readyapi/test-results
+            -f /test-results
 
       - name: Upload Test Results
         uses: actions/upload-artifact@v3
