@@ -1,7 +1,13 @@
 name: ReadyAPI Tests
 
-on:
+on: 
   workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   readyapi:
