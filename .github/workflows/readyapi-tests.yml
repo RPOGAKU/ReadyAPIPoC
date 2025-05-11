@@ -30,10 +30,11 @@ jobs:
             -v "${{ github.workspace }}:/readyapi" \
             -v "${{ github.workspace }}/test-results:/test-results" \
             smartbear/ready-api-soapui-testrunner:latest \
-            /readyapi/${PROJECT_FILE} \
-            -s "${TEST_SUITE}" \
-            -j \
-            -f /test-results
+            /bin/bash -c "/opt/SmartBear/ReadyAPI-*/bin/testrunner.sh \
+              -s \"${TEST_SUITE}\" \
+              -j \
+              -f /test-results \
+              /readyapi/${PROJECT_FILE}"
 
       - name: Upload Test Results
         uses: actions/upload-artifact@v4
