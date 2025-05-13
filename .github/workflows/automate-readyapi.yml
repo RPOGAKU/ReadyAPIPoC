@@ -1,0 +1,27 @@
+name: Automate ReadyAPI Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  readyapi-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run ReadyAPI Tests using Docker
+        run: |
+          docker pull smartbear/readyapi-testengine:latest
+
+          docker run --rm \
+            -v ${{ github.workspace }}/tests:/projects \
+            -e READYAPI_LICENSE_SERVER=${{ secrets.READYAPI_LICENSE_SERVER }} \
+            -e READYAPI_LICENSE_USERNAME=${{ secrets.READYAPI_LICENSE_USERNAME }} \
+            -e READYAPI_LICENSE_PASSWORD=${{ secrets.READYAPI_LICENSE_PASSWORD }} \
+            smartbear/readyapi-testengine:latest \
+            testrunner.sh -r -j -f /projects/results -I -s "DemoAppProject" /projects/DemoAppProject.xml
