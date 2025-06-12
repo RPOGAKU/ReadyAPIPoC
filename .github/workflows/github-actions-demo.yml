@@ -24,16 +24,16 @@ jobs:
 
           echo "🚀 Running ReadyAPI tests..."
           docker run --rm \
-            -v "${{ github.workspace }}":/project \
-            -e SLM_LICENSE_SERVER="${{ secrets.SLM_LICENSE_SERVER }}" \
-            -e API_KEY="${{ secrets.SLM_API_KEY }}" \
-            smartbear/ready-api-soapui-testrunner \
-            -EDefault environment \
-            -sDemoAppTestSuite \
-            -cPositiveScenario \
-            -r -f/project/reports \
-            /project/DemoAppProject.xml
-
+          -v "${{ github.workspace }}":/project \
+          -e SLM_LICENSE_SERVER="${{ secrets.SLM_LICENSE_SERVER }}" \
+          -e SLM_API_KEY="${{ secrets.SLM_API_KEY }}" \
+          smartbear/ready-api-soapui-testrunner \
+          -EDefault environment \
+          -sDemoAppTestSuite \
+          -cPositiveScenario \
+          -r -f/project/reports \
+          /project/DemoAppProject.xml
+        
       - name: 📤 Upload Test Results
         uses: actions/upload-artifact@v4
         with:
