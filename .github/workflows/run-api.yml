@@ -1,0 +1,34 @@
+name: Run ReadyAPI Tests
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Run ReadyAPI tests via Docker
+        env:
+          SLM_API_KEY: ${{ secrets.SLM_API_KEY }}
+          SLM_LICENSE_SERVER: ${{ secrets.SLM_LICENSE_SERVER }}
+        run: |
+          echo "📂 Listing files in workspace:"
+          ls -la "${{ github.workspace }}"
+
+          docker pull smartbear/ready-api-soapui-testrunner
+          docker run \
+            -v "${{ github.workspace }}":/project \
+            -e SLM_LICENSE_SERVER="${{ secrets.SLM_LICENSE_SERVER }}" \
+            -e API_KEY="${{ secrets.SLM_API_KEY }}" \
+            -e COMMAND_LINE="'-EDefault environment' -sDemoAppTestSuite -cPositiveScenario /project/DemoAppProject.xml" \
+            smartbear/ready-api-soapui-testrunner
+
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: readyapi-results
+          path: ./reports
